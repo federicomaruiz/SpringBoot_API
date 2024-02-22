@@ -32,4 +32,8 @@ public class SerieService {
     public List<Serie> searchByName(String name){
         return serieRepository.findByNameContainingIgnoreCase(name);
     }
+
+    public Serie save(Serie serie){
+        return serieRepository.save(serie);
+    }
 }
