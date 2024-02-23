@@ -36,4 +36,16 @@ public class SerieService {
     public Serie save(Serie serie){
         return serieRepository.save(serie);
     }
+
+    public List<Serie> getByYearRange(Integer startYear, Integer endYear) {
+        return serieRepository.findByYearBetween(startYear, endYear);
+    }
+
+    public List<Serie> getTopRated() {
+        return serieRepository.findTop10ByOrderByRankingDesc();
+    }
+
+    public List<Serie> getByGenre(String genre) {
+        return serieRepository.findByGenre(genre);
+    }
 }

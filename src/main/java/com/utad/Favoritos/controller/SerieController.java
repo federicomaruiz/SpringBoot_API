@@ -99,6 +99,40 @@ public class SerieController {  // Respuestas
         }
     }
 
+    @GetMapping("/genre/{genre}")
+    public ResponseEntity<List<Serie>> getByGenre(@PathVariable String genre) {
+        List<Serie> series = serieService.getByGenre(genre);
+        return ResponseEntity.ok(series);
+    }
+
+    @GetMapping("/year")
+    public ResponseEntity<List<Serie>> getByYearRange(@RequestParam Integer startYear, @RequestParam Integer endYear) {
+        List<Serie> series = serieService.getByYearRange(startYear, endYear);
+        return ResponseEntity.ok(series);
+    }
+
+    @GetMapping("/top-rated")
+    public ResponseEntity<List<Serie>> getTopRated() {
+        List<Serie> series = serieService.getTopRated();
+        return ResponseEntity.ok(series);
+    }
+
+    @PutMapping("/{idSerie}/ranking")
+    public ResponseEntity<Serie> actualizarRanking(@PathVariable Long idSerie, @RequestParam Integer ranking) {
+        Optional<Serie> serieOptional = serieService.getSerie(idSerie);
+
+        if (serieOptional.isPresent()) {
+            Serie serie = serieOptional.get();
+            serie.setRanking(ranking);
+            Serie serieActualizada = serieService.saveOrUpdate(serie);
+            return ResponseEntity.ok(serieActualizada);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
 
 }
 
