@@ -12,5 +12,5 @@ public interface SerieRepository extends JpaRepository<Serie,Long> {
     List <Serie> findByNameContainingIgnoreCase(String name);
     List<Serie> findByGenre(String genre);
     List<Serie> findByYearBetween(Integer startYear, Integer endYear);
-    List<Serie> findTop10ByOrderByRankingDesc();
+    List<Serie> findTop10ByOrderByRankingAsc(); // Cambio aquí: Orden ascendente
 }

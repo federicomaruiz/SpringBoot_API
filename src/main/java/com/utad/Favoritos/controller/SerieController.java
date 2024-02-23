@@ -117,23 +117,6 @@ public class SerieController {  // Respuestas
         return ResponseEntity.ok(series);
     }
 
-    @PutMapping("/{idSerie}/ranking")
-    public ResponseEntity<Serie> actualizarRanking(@PathVariable Long idSerie, @RequestParam Integer ranking) {
-        Optional<Serie> serieOptional = serieService.getSerie(idSerie);
-
-        if (serieOptional.isPresent()) {
-            Serie serie = serieOptional.get();
-            serie.setRanking(ranking);
-            Serie serieActualizada = serieService.saveOrUpdate(serie);
-            return ResponseEntity.ok(serieActualizada);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-
-
-
 }
 
 

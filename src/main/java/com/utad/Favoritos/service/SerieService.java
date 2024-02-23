@@ -42,10 +42,11 @@ public class SerieService {
     }
 
     public List<Serie> getTopRated() {
-        return serieRepository.findTop10ByOrderByRankingDesc();
+        return serieRepository.findTop10ByOrderByRankingAsc();
     }
 
     public List<Serie> getByGenre(String genre) {
         return serieRepository.findByGenre(genre);
     }
+
 }
