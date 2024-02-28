@@ -3,7 +3,6 @@ package com.utad.Favoritos.controller;
 import com.utad.Favoritos.dto.RequestSerieConActoresDTO;
 import com.utad.Favoritos.model.Serie;
 import com.utad.Favoritos.service.SerieService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -120,17 +119,17 @@ public class SerieController {  // Respuestas
     }
 
     @GetMapping("/todos")
+    
     public ResponseEntity<Boolean> allSeries() {
         return ResponseEntity.ok(true);
     }
 
     @PostMapping ("/completo")
-    public ResponseEntity<Boolean> addSerieComplete(@RequestBody RequestSerieConActoresDTO resquest) {
+    public ResponseEntity<Serie> addSerieComplete(@RequestBody RequestSerieConActoresDTO resquest) {
         // Validaciones si es null etc..
-        serieService.addSerieWithActoresAndProductor(resquest);
-        return ResponseEntity.ok(true);
+       Serie serieCreated =  serieService.addSerieWithActoresAndProductor(resquest);
+        return ResponseEntity.ok(serieCreated);
     }
-
 }
 
 
